@@ -1,0 +1,17 @@
+/Warp
+/Spawn
+/support
+/money
+/friede
+/vote
+/ignore
+/back
+/kit
+/msg
+/kick
+/mute
+/team
+/home
+/warp
+
+Combatlog, Vote System, Scoreboard, Mobstack
