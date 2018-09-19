@@ -105,6 +105,7 @@ public class Main extends JavaPlugin {
 		getCommand("tempmute").setExecutor(new CommandTempmute());
 		getCommand("unmute").setExecutor(new CommandUnmute());
 		getCommand("itemfilter").setExecutor(new CommandItemfilter());
+		getCommand("signature").setExecutor(new CommandSignature());
 
 		getCommand("skype").setExecutor(new CommandSimple());
 		getCommand("teamspeak").setExecutor(new CommandSimple());
