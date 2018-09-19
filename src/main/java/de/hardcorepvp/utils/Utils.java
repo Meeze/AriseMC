@@ -40,37 +40,11 @@ public class Utils {
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
 
-	public static int stackItems(Player player) {
+	public static int stackItems(Player player, int stacksize) {
 
-		int stackedItems = 0;
-		ItemStack[] contents = player.getInventory().getContents();
 
-		for (int i = 0; i < contents.length; i++) {
-			ItemStack item = contents[i];
-			if ((item != null) && (item.getType() != Material.AIR) && (item.getAmount() > 0)) {
-				if (item.getAmount() < 64) {
-					int needed = 64 - item.getAmount();
-					for (int i2 = i++; i2 < contents.length; i2++) {
-						ItemStack nextCurrent = contents[i2];
-						if ((nextCurrent != null) && (nextCurrent.getType() != Material.AIR) && (nextCurrent.getAmount() > 0)) {
-							if ((item.getType() == nextCurrent.getType()) && (item.getDurability() == nextCurrent.getDurability()) && (((item.getItemMeta() == null) && (nextCurrent.getItemMeta() == null)) || ((item.getItemMeta() != null) && (item.getItemMeta().equals(nextCurrent.getItemMeta()))))) {
-								if (nextCurrent.getAmount() > needed) {
-									item.setAmount(64);
-									nextCurrent.setAmount(nextCurrent.getAmount() - needed);
-									stackedItems++;
-									break;
-								}
-								contents[i2] = null;
-								item.setAmount(item.getAmount() + nextCurrent.getAmount());
-								needed = 64 - item.getAmount();
-
-							}
-						}
-					}
-				}
-			}
-		}
-		return stackedItems;
+		// TODO PASCAL MACH DAS BITTE ICH KRIEG DAS NICHT IMMER STACKEN SICH ALLE ENCHANTMENTS IM 1. SLOT -.-
+		return 0;
 	}
 
 	public static void sendItemInChat(Player player, ItemStack item, String playerstuff, String message) {

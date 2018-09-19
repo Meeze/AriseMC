@@ -27,7 +27,7 @@ public class CommandGiveall implements CommandExecutor {
 
 			ItemStack item = player.getItemInHand();
 			for (Player givePlayer : Bukkit.getOnlinePlayers()) {
-				givePlayer.getInventory().addItem(item);
+				if (player != givePlayer) givePlayer.getInventory().addItem(item);
 			}
 			Bukkit.broadcastMessage(Messages.formatMessage("Jedem Spieler wurde " + item.getAmount() + "x " + item.getType() + " gegeben"));
 			return true;
