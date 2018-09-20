@@ -10,49 +10,49 @@ import org.bukkit.entity.Player;
 
 public class CommandHeal implements CommandExecutor {
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-		if (!(sender instanceof Player)) {
-			return false;
-		}
+        if (!(sender instanceof Player)) {
+            return false;
+        }
 
-		Player player = (Player) sender;
+        Player player = (Player) sender;
 
-		if (args.length == 0) {
+        if (args.length == 0) {
 
-			player.setHealth(20.0);
-			player.setFoodLevel(20);
-			player.setSaturation(20);
-			Utils.removeNegativePotions(player);
+            player.setHealth(20.0);
+            player.setFoodLevel(20);
+            player.setSaturation(20);
+            Utils.removeNegativePotions(player);
 
-			player.sendMessage(Messages.formatMessage("Du wurdest geheilt."));
-			return true;
-		}
+            player.sendMessage(Messages.formatMessage("Du wurdest geheilt."));
+            return true;
+        }
 
-		if (args.length == 1) {
+        if (args.length == 1) {
 
-			if (!Bukkit.getPlayer(args[0]).isOnline()) {
-				player.sendMessage(Messages.formatMessage(Messages.PLAYER_NOT_FOUND));
-				return true;
-			}
+            if (!Bukkit.getPlayer(args[0]).isOnline()) {
+                player.sendMessage(Messages.formatMessage(Messages.PLAYER_NOT_FOUND));
+                return true;
+            }
 
-			Player target = Bukkit.getPlayer(args[0]);
+            Player target = Bukkit.getPlayer(args[0]);
 
-			target.setHealth(20.0);
-			target.setFoodLevel(20);
-			target.setSaturation(20);
-			Utils.removeNegativePotions(target);
+            target.setHealth(20.0);
+            target.setFoodLevel(20);
+            target.setSaturation(20);
+            Utils.removeNegativePotions(target);
 
 
-			target.sendMessage(Messages.formatMessage("Du wurdest geheilt."));
-			player.sendMessage(Messages.formatMessage("Du hast " + target.getName() + " geheilt."));
-			return true;
-		}
+            target.sendMessage(Messages.formatMessage("Du wurdest geheilt."));
+            player.sendMessage(Messages.formatMessage("Du hast " + target.getName() + " geheilt."));
+            return true;
+        }
 
-		player.sendMessage(Messages.formatMessage(Messages.TOO_MANY_ARGUMENTS));
-		return true;
+        player.sendMessage(Messages.formatMessage(Messages.TOO_MANY_ARGUMENTS));
+        return true;
 
-	}
+    }
 
 }

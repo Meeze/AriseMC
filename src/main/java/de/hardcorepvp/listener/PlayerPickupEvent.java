@@ -12,23 +12,23 @@ import org.bukkit.inventory.ItemStack;
 
 public class PlayerPickupEvent implements Listener {
 
-	@EventHandler
-	public void onItemPickup(PlayerPickupItemEvent event) {
-		Player player = event.getPlayer();
-		Item item = event.getItem();
-		ItemStack itemstack = item.getItemStack();
-		if (Main.getManager().isAutoselling(player)) {
+    @EventHandler
+    public void onItemPickup(PlayerPickupItemEvent event) {
+        Player player = event.getPlayer();
+        Item item = event.getItem();
+        ItemStack itemstack = item.getItemStack();
+        if (Main.getManager().isAutoselling(player)) {
 
-			//TODO SELLITEMS
-			player.sendMessage("Item verkauft!");
-			event.getItem().setItemStack(new ItemStack(Material.AIR));
+            //TODO SELLITEMS
+            player.sendMessage("Item verkauft!");
+            event.getItem().setItemStack(new ItemStack(Material.AIR));
 
-		}
-		if (Main.getManager().isItemfiltered(player)) {
-			if (Utils.toFilter.contains(itemstack.getType())) {
-				event.setCancelled(true);
+        }
+        if (Main.getManager().isItemfiltered(player)) {
+            if (Utils.toFilter.contains(itemstack.getType())) {
+                event.setCancelled(true);
 
-			}
-		}
-	}
+            }
+        }
+    }
 }

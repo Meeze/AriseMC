@@ -14,31 +14,31 @@ import org.bukkit.entity.Player;
 
 public class CommandSignature implements CommandExecutor {
 
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-		if (!(sender instanceof Player)) {
-			return false;
-		}
+        if (!(sender instanceof Player)) {
+            return false;
+        }
 
-		Player player = (Player) sender;
-		if (args.length == 0) {
+        Player player = (Player) sender;
+        if (args.length == 0) {
 
-			Block block = player.getTargetBlock(null, 5);
+            Block block = player.getTargetBlock(null, 5);
 
-			if (block.getType() != Material.WALL_SIGN && block.getType() != Material.SIGN_POST) {
-				player.sendMessage("Schau ein Schild an!");
-				return true;
-			}
-			Sign sign = (Sign) block.getState();
-			sign.setLine(0, "-*-*-*-*-*-*-*-");
-			sign.setLine(1, ChatColor.translateAlternateColorCodes('&', Main.getUserManager().getUser(player.getUniqueId()).getGroup().getPrefix()));
-			sign.setLine(2, ChatColor.translateAlternateColorCodes('&', StringUtils.substring(Main.getUserManager().getUser(player.getUniqueId()).getGroup().getPrefix(), 3, 5) + " " + player.getName()));
-			sign.setLine(3, "-*-*-*-*-*-*-*-");
-			sign.update();
-			return true;
-		}
-		player.sendMessage(Messages.formatMessage(Messages.TOO_MANY_ARGUMENTS));
-		return true;
-	}
+            if (block.getType() != Material.WALL_SIGN && block.getType() != Material.SIGN_POST) {
+                player.sendMessage("Schau ein Schild an!");
+                return true;
+            }
+            Sign sign = (Sign) block.getState();
+            sign.setLine(0, "-*-*-*-*-*-*-*-");
+            sign.setLine(1, ChatColor.translateAlternateColorCodes('&', Main.getUserManager().getUser(player.getUniqueId()).getGroup().getPrefix()));
+            sign.setLine(2, ChatColor.translateAlternateColorCodes('&', StringUtils.substring(Main.getUserManager().getUser(player.getUniqueId()).getGroup().getPrefix(), 3, 5) + " " + player.getName()));
+            sign.setLine(3, "-*-*-*-*-*-*-*-");
+            sign.update();
+            return true;
+        }
+        player.sendMessage(Messages.formatMessage(Messages.TOO_MANY_ARGUMENTS));
+        return true;
+    }
 
 }

@@ -56,15 +56,12 @@ public class CommandStats implements CommandExecutor {
 			executor.sendMessage(Messages.formatMessage(Messages.ERROR_OCCURRED));
 			return;
 		}
-		user.addReadyExecutor(new Runnable() {
-			@Override
-			public void run() {
-				executor.sendMessage("Stats von " + targetName);
-				executor.sendMessage("Kills " + user.getKills());
-				executor.sendMessage("Deaths " + user.getDeaths());
-				executor.sendMessage("K/D " + user.getKD());
-				executor.sendMessage("Rank " + Main.getRankingManager().getUserRank(targetUniqueId));
-			}
+		user.addReadyExecutor(() -> {
+			executor.sendMessage("Stats von " + targetName);
+			executor.sendMessage("Kills " + user.getKills());
+			executor.sendMessage("Deaths " + user.getDeaths());
+			executor.sendMessage("K/D " + user.getKD());
+			executor.sendMessage("Rank " + Main.getRankingManager().getUserRank(targetUniqueId));
 		});
 	}
 }

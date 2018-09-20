@@ -9,16 +9,16 @@ import org.bukkit.entity.Player;
 
 public class CommandIFix implements CommandExecutor {
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (!(sender instanceof Player)) {
-			return false;
-		}
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (!(sender instanceof Player)) {
+            return false;
+        }
 
-		Player player = (Player) sender;
+        Player player = (Player) sender;
 
-		Utils.fixItems(player, false);
-		player.sendMessage(Messages.formatMessage("Dein Inventar wurde repariert"));
-		return true;
-	}
+        Utils.fixItems(player, false);
+        player.sendMessage(Messages.formatMessage("Dein Inventar wurde repariert"));
+        return true;
+    }
 }
