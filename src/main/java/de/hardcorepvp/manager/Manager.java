@@ -118,7 +118,7 @@ public class Manager {
 	public void sendTpahereRequest(Player sender, Player recipient) {
 		if (currentTpahereRequest.values().contains(sender.getName())) {
 			Bukkit.broadcastMessage("test1");
-			currentTpahereRequest.values().remove(sender.getName());
+            currentTpahereRequest.values().remove(sender.getName())
 		}
 		if (currentTpaRequest.values().contains(sender.getName())) {
 			Bukkit.broadcastMessage("test2");
@@ -128,24 +128,22 @@ public class Manager {
 	}
 
 	public void killTpaRequest(String key) {
-		if (currentTpaRequest.containsKey(key)) {
-			Player player = Bukkit.getPlayer(currentTpaRequest.get(key));
-			if (player != null) {
-				player.sendMessage("Deine Anfrage ist abgelaufen");
-			}
-			currentTpaRequest.remove(key);
-		}
+        handleTPA(key, currentTpaRequest);
 	}
 
 	public void killTpahereRequest(String key) {
-		if (currentTpahereRequest.containsKey(key)) {
-			Player player = Bukkit.getPlayer(currentTpahereRequest.get(key));
-			if (player != null) {
-				player.sendMessage("Deine Anfrage ist abgelaufen");
-			}
-			currentTpahereRequest.remove(key);
-		}
-	}
+        handleTPA(key, currentTpahereRequest);
+    }
+
+    private void handleTPA(String key, HashMap<String, String> currentTpaRequest) {
+        if (currentTpaRequest.containsKey(key)) {
+            Player player = Bukkit.getPlayer(currentTpaRequest.get(key));
+            if (player != null) {
+                player.sendMessage("Deine Anfrage ist abgelaufen");
+            }
+            currentTpaRequest.remove(key);
+        }
+    }
 
 	public ConcurrentHashMap<String, Long> getTpaCooldown() {
 		return tpaCooldownList;
