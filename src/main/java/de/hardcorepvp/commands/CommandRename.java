@@ -16,43 +16,43 @@ import java.util.Collections;
 
 public class CommandRename implements CommandExecutor {
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-		if (!(sender instanceof Player)) {
-			return false;
-		}
+        if (!(sender instanceof Player)) {
+            return false;
+        }
 
-		Player player = (Player) sender;
+        Player player = (Player) sender;
 
-		if (player.getItemInHand() != null && player.getItemInHand().getType() != Material.AIR) {
+        if (player.getItemInHand() != null && player.getItemInHand().getType() != Material.AIR) {
 
-			if (args.length >= 1) {
+            if (args.length >= 1) {
 
-				if (!args[0].equalsIgnoreCase("reset")) {
+                if (!args[0].equalsIgnoreCase("reset")) {
 
-					ArrayList<String> nameStrings = new ArrayList<>();
-					Collections.addAll(nameStrings, args);
+                    ArrayList<String> nameStrings = new ArrayList<>();
+                    Collections.addAll(nameStrings, args);
 
-					String name = String.join(" ", nameStrings);
-					Utils.renameItemInHand(player, name);
-					player.sendMessage(Messages.formatMessage("Dein Item heißt nun: " + ChatColor.translateAlternateColorCodes('&', name)));
-					return true;
+                    String name = String.join(" ", nameStrings);
+                    Utils.renameItemInHand(player, name);
+                    player.sendMessage(Messages.formatMessage("Dein Item heißt nun: " + ChatColor.translateAlternateColorCodes('&', name)));
+                    return true;
 
-				}
+                }
 
-				ItemStack item = player.getItemInHand();
-				ItemMeta im = item.getItemMeta();
-				im.setDisplayName(null);
-				item.setItemMeta(im);
-				return true;
+                ItemStack item = player.getItemInHand();
+                ItemMeta im = item.getItemMeta();
+                im.setDisplayName(null);
+                item.setItemMeta(im);
+                return true;
 
-			}
+            }
 
-			player.sendMessage(Messages.formatMessage(Messages.TOO_LESS_ARGUMENTS));
+            player.sendMessage(Messages.formatMessage(Messages.TOO_LESS_ARGUMENTS));
 
-		}
-		player.sendMessage(Messages.formatMessage("Du musst ein Item in der Hand halten!"));
-		return true;
-	}
+        }
+        player.sendMessage(Messages.formatMessage("Du musst ein Item in der Hand halten!"));
+        return true;
+    }
 }

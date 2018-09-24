@@ -1,5 +1,5 @@
 package de.hardcorepvp.manager;
 
 public class PerformanceManager {
-	//TPS check etc
+    //TPS check etc
 }

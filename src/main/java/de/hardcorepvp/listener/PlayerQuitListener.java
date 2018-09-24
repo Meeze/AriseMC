@@ -11,17 +11,17 @@ import java.util.UUID;
 
 public class PlayerQuitListener implements Listener {
 
-	@EventHandler
-	public void onPlayerQuit(PlayerQuitEvent event) {
-		Player player = event.getPlayer();
-		UUID uniqueId = player.getUniqueId();
-		Main.getManager().removePlayer(player);
-		Main.getPermissionManager().removeAttachment(player);
-		Main.getUserManager().removeUser(uniqueId);
-		Main.getClanManager().removeClanRequests(uniqueId);
-		if (Main.getClanManager().hasClan(uniqueId)) {
-			Clan clan = Main.getClanManager().getClan(uniqueId);
-			clan.broadcast(player, player.getName() + " ist nun offline.");
-		}
-	}
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        UUID uniqueId = player.getUniqueId();
+        Main.getManager().removePlayer(player);
+        Main.getPermissionManager().removeAttachment(player);
+        Main.getUserManager().removeUser(uniqueId);
+        Main.getClanManager().removeClanRequests(uniqueId);
+        if (Main.getClanManager().hasClan(uniqueId)) {
+            Clan clan = Main.getClanManager().getClan(uniqueId);
+            clan.broadcast(player, player.getName() + " ist nun offline.");
+        }
+    }
 }

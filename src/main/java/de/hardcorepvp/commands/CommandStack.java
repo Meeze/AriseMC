@@ -17,15 +17,18 @@ public class CommandStack implements CommandExecutor {
 		}
 
 		Player player = (Player) sender;
+		int stackedItems = Utils.stackItems(player, 64);
 
-
-		int stackedItems = Utils.stackItems(player);
 		if (stackedItems > 0) {
-			player.sendMessage(Messages.formatMessage("Deine Items wurden gestacked."));
+			player.sendMessage(Messages.formatMessage("Es wurden " + stackedItems + " Items gestacked!"));
 			return true;
 		}
-		player.sendMessage(Messages.formatMessage("Es wurde nichts gestacked."));
+
+		player.sendMessage(Messages.formatMessage("Es konnte nichts gestackt werden!"));
 		return true;
 	}
-
 }
+
+
+
+

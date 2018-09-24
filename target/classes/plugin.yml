@@ -51,3 +51,6 @@ commands:
   tempmute:
   unmute:
   itemfilter:
+  autosell:
+  signature:
+  skull:
