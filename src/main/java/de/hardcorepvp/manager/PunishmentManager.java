@@ -245,6 +245,19 @@ public class PunishmentManager {
 		return banHistory;
 	}
 
+	public void deleteBanHistoryAsync(UUID uniqueId, Callback<Boolean> callback) {
+		try {
+			try (PreparedStatement statement = Main.getDatabaseManager().getConnection().prepareStatement("DELETE FROM `hc_bans_history` WHERE `uniqueId` = ?")) {
+				statement.setString(1, uniqueId.toString());
+				statement.executeUpdate();
+				callback.onResult(true);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			callback.onFailure(e.getCause());
+		}
+	}
+
 	public boolean deleteBanData(UUID uniqueId) {
 		try {
 			try (PreparedStatement statement = Main.getDatabaseManager().getConnection().prepareStatement("DELETE FROM `hc_bans` WHERE `uniqueId` = ?")) {
@@ -349,6 +362,18 @@ public class PunishmentManager {
 				callback.onFailure(e.getCause());
 			}
 		});
+	}
+	public void deleteMuteHistoryAsync(UUID uniqueId, Callback<Boolean> callback) {
+		try {
+			try (PreparedStatement statement = Main.getDatabaseManager().getConnection().prepareStatement("DELETE FROM `hc_mutes_history` WHERE `uniqueId` = ?")) {
+				statement.setString(1, uniqueId.toString());
+				statement.executeUpdate();
+				callback.onResult(true);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			callback.onFailure(e.getCause());
+		}
 	}
 
 	public void deleteMuteData(UUID uniqueId, Callback<Boolean> callback) {
