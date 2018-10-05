@@ -54,3 +54,7 @@ commands:
   autosell:
   signature:
   skull:
+  money:
+  pay:
+  mutehistory:
+  banhistory:

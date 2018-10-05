@@ -3,6 +3,9 @@ package de.hardcorepvp.file;
 import de.hardcorepvp.model.FileBase;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ConfigFile extends FileBase {
 
     private String host;
@@ -10,6 +13,7 @@ public class ConfigFile extends FileBase {
     private String schema;
     private String user;
     private String password;
+    private ArrayList<String> worlds;
 
     public ConfigFile() {
         super("", "config.yml");
@@ -24,6 +28,7 @@ public class ConfigFile extends FileBase {
         fileConfiguration.addDefault("Database.Schema", "");
         fileConfiguration.addDefault("Database.User", "");
         fileConfiguration.addDefault("Database.Password", "");
+        fileConfiguration.addDefault("CustomWorlds", new ArrayList<String>());
 
         fileConfiguration.options().copyDefaults(true);
         this.saveFile();
@@ -47,6 +52,7 @@ public class ConfigFile extends FileBase {
         if (fileConfiguration.isSet("Database.Password")) {
             this.password = fileConfiguration.getString("Database.Password");
         }
+        this.worlds = (ArrayList<String>) fileConfiguration.getStringList("CustomWorlds");
     }
 
     public String getHost() {
@@ -68,4 +74,21 @@ public class ConfigFile extends FileBase {
     public String getPassword() {
         return password;
     }
+
+    public List<String> getCustomWorlds() {
+        return worlds;
+    }
+
+    public void addWorld(String name) {
+        worlds.add(name);
+        getFileConfiguration().set("CustomWorlds", worlds);
+        this.saveFile();
+    }
+
+    public void removeWorld(String name) {
+        worlds.remove(name);
+        getFileConfiguration().set("CustomWorlds", worlds);
+        this.saveFile();
+    }
+
 }

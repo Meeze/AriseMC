@@ -12,6 +12,8 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+
 public class Main extends JavaPlugin {
 
     private static Main instance;
@@ -29,7 +31,6 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         Utils.registerCustomEnchantments();
         //TODO SAVE WORLDS IN CONFIG AND LOAD THEM PROPERLY
-        World worldTest = WorldCreator.name("test").createWorld();
         instance = this;
         configFile = new ConfigFile();
         permissionsFile = new PermissionsFile();
@@ -44,6 +45,11 @@ public class Main extends JavaPlugin {
             Bukkit.getScheduler().runTaskLater(this, () -> Bukkit.getServer().setWhitelist(true), 60L);
             return;
         }
+
+        for (String customworld : configFile.getCustomWorlds()) {
+            WorldCreator.name(customworld).createWorld();
+        }
+
         manager = new Manager();
         userManager = new UserManager();
         rankingManager = new RankingManager();
@@ -107,6 +113,10 @@ public class Main extends JavaPlugin {
         getCommand("itemfilter").setExecutor(new CommandItemfilter());
         getCommand("signature").setExecutor(new CommandSignature());
         getCommand("skull").setExecutor(new CommandSkull());
+        getCommand("money").setExecutor(new CommandMoney());
+        getCommand("pay").setExecutor(new CommandPay());
+        getCommand("mutehistory").setExecutor(new CommandMuteHistory());
+        getCommand("banhistory").setExecutor(new CommandBanHistory());
 
         getCommand("skype").setExecutor(new CommandSimple());
         getCommand("teamspeak").setExecutor(new CommandSimple());

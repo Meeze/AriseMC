@@ -105,6 +105,7 @@ public class UUIDManager {
 
             callback.onResult(profileHolder);
         } catch (Exception e) {
+            //TODO REMOVE THIS
             e.printStackTrace();
             callback.onFailure(e.getCause());
         }

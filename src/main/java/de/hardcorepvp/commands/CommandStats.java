@@ -43,7 +43,7 @@ public class CommandStats implements CommandExecutor {
 
 				@Override
 				public void onFailure(Throwable cause) {
-					player.sendMessage(Messages.formatMessage(Messages.ERROR_OCCURRED));
+					player.sendMessage(Messages.PLAYER_DOESNT_EXIST);
 				}
 			});
 		}
