@@ -30,7 +30,6 @@ public class Clan {
         this.kills = kills;
         this.ranking = -1;
         this.writeToDatabase();
-
     }
 
     public List<ClanMember> getMembers() {

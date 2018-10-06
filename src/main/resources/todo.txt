@@ -15,5 +15,8 @@
 /warp
 
 Combatlog, Vote System, Scoreboard, Mobstack
+clan coins
+trusted base
+mod alles andere
 
 testing commit
