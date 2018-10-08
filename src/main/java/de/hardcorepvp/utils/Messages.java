@@ -20,6 +20,8 @@ public class Messages {
     public static final String TEAM_MEMBER_LEFT = "-%p%";
     public static final String EXCAVATOR_BLOCK = "§e<EXCAVATOR>";
     public static final String EXCAVATOR_RADIUS = "Radius: ";
+    public static final String BROADCAST = "<BROADCAST>";
+
     public static final String PLAYER_DOESNT_EXIST = "Dieser Name ist mit keinem Minecraft Account verbunden!";
 
 

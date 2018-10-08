@@ -38,7 +38,6 @@ public class CommandSpawner implements CommandExecutor {
                 return true;
             }
             CreatureSpawner spawner = (CreatureSpawner) block.getState();
-            player.sendMessage(spawner.getCreatureTypeName());
             if (args[0].equalsIgnoreCase("creeper")) {
                 spawner.setSpawnedType(EntityType.CREEPER);
                 spawner.update();

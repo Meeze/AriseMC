@@ -58,3 +58,4 @@ commands:
   pay:
   mutehistory:
   banhistory:
+  broadcast:
