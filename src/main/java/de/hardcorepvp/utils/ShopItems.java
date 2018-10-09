@@ -10,7 +10,7 @@ public enum ShopItems {
     private int buyPrice;
     private int sellPrice;
 
-    private ShopItems(int buyPrice, int sellPrice) {
+    ShopItems(int buyPrice, int sellPrice) {
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
     }
