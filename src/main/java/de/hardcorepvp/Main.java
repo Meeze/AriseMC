@@ -59,6 +59,7 @@ public class Main extends JavaPlugin {
 
         registerCommands();
         registerListeners();
+        Utils.setupInventory();
 
     }
 

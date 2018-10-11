@@ -11,12 +11,16 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.CreatureSpawner;
 import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.MonsterEggs;
 import org.bukkit.potion.PotionEffect;
 
 import java.io.File;
@@ -28,6 +32,10 @@ import java.util.regex.Pattern;
 
 
 public class Utils {
+
+	public static HashMap<Player, CreatureSpawner> spawnerToChange = new HashMap<>();
+
+	public static Inventory spawnerInv = Bukkit.createInventory(null, 9, "Wähle einen Spawner!");
 
 	public static CMDItemEnchant uniqueEnchant = new CMDItemEnchant(1337);
 
@@ -42,9 +50,20 @@ public class Utils {
 
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
+	public static void setupInventory(){
+		spawnerInv.setItem(0, new ItemStack(Material.STAINED_GLASS_PANE));
+		spawnerInv.setItem(1, new ItemStack(Material.STAINED_GLASS_PANE));
+		spawnerInv.setItem(2, new ItemStack(Material.MONSTER_EGG, 1, EntityType.PIG.getTypeId()));
+		spawnerInv.setItem(3, new ItemStack(Material.MONSTER_EGG, 1, EntityType.PIG_ZOMBIE.getTypeId()));
+		spawnerInv.setItem(4, new ItemStack(Material.STAINED_GLASS_PANE));
+		spawnerInv.setItem(5, new ItemStack(Material.MONSTER_EGG, 1, EntityType.CREEPER.getTypeId()));
+		spawnerInv.setItem(6, new ItemStack(Material.MONSTER_EGG, 1, EntityType.IRON_GOLEM.getTypeId()));
+		spawnerInv.setItem(7, new ItemStack(Material.STAINED_GLASS_PANE));
+		spawnerInv.setItem(8, new ItemStack(Material.STAINED_GLASS_PANE));
+
+	}
 
 	public static int stackItems(Player player, int stacksize) {
-
 
 		// TODO PASCAL MACH DAS BITTE ICH KRIEG DAS NICHT IMMER STACKEN SICH ALLE ENCHANTMENTS IM 1. SLOT -.-
 		return 0;

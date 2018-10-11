@@ -16,12 +16,11 @@ public class CommandBroadcast implements CommandExecutor {
     }
     Player player = (Player) sender;
     if (args.length > 0) {
-      StringBuilder builder = new StringBuilder();
-      builder.append(Messages.BROADCAST);
-      for (int i = 1; i < args.length; i++) {
-        builder.append(" " + args);
+      String broadcastMessage = Messages.BROADCAST;
+      for (int i = 0; i < args.length; i++) {
+        broadcastMessage += " " + args[i];
       }
-      Bukkit.broadcastMessage(builder.toString());
+      Bukkit.broadcastMessage(broadcastMessage);
       return true;
     }
     player.sendMessage(Messages.formatMessage(Messages.TOO_LESS_ARGUMENTS));

@@ -58,3 +58,5 @@ commands:
   pay:
   mutehistory:
   banhistory:
+  broadcast:
+  enchant:
