@@ -17,6 +17,7 @@ public class PlayerQuitListener implements Listener {
         UUID uniqueId = player.getUniqueId();
         Main.getManager().removePlayer(player);
         Main.getPermissionManager().removeAttachment(player);
+        Main.getScoreboardManager().removePlayer(player);
         Main.getClanManager().removeClanRequests(uniqueId);
         if (Main.getClanManager().hasClan(uniqueId)) {
             Clan clan = Main.getClanManager().getClan(uniqueId);

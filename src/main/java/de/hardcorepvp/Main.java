@@ -6,6 +6,7 @@ import de.hardcorepvp.file.ConfigFile;
 import de.hardcorepvp.file.PermissionsFile;
 import de.hardcorepvp.listener.*;
 import de.hardcorepvp.manager.*;
+import de.hardcorepvp.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,6 +18,7 @@ public class Main extends JavaPlugin {
     private static PermissionsFile permissionsFile;
     private static DatabaseManager databaseManager;
     private static Manager manager;
+    private static ScoreboardManager scoreboardManager;
     private static StatsManager statsManager;
     private static CurrencyManager currencyManager;
     private static DataManager dataManager;
@@ -50,6 +52,7 @@ public class Main extends JavaPlugin {
         }
 
         manager = new Manager();
+        scoreboardManager = new ScoreboardManager();
         statsManager = new StatsManager();
         currencyManager = new CurrencyManager();
         dataManager = new DataManager();
@@ -62,7 +65,6 @@ public class Main extends JavaPlugin {
         registerCommands();
         registerListeners();
         Utils.setupInventory();
-
     }
 
     @Override
@@ -165,6 +167,10 @@ public class Main extends JavaPlugin {
 
     public static Manager getManager() {
         return manager;
+    }
+
+    public static ScoreboardManager getScoreboardManager() {
+        return scoreboardManager;
     }
 
     public static StatsManager getStatsManager() {

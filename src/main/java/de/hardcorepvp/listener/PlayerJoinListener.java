@@ -27,6 +27,8 @@ public class PlayerJoinListener implements Listener {
             Clan clan = Main.getClanManager().getClan(uniqueId);
             clan.broadcast(player, player.getName() + " ist nun online.");
         }
+        Main.getScoreboardManager().addPlayer(player);
+        Main.getScoreboardManager().updateTablist();
         Main.getStatsManager().getUserStats(uniqueId, new Callback<UserStats>() {
             @Override
             public void onResult(UserStats stats) {
