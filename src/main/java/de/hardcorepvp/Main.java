@@ -61,6 +61,7 @@ public class Main extends JavaPlugin {
 
         registerCommands();
         registerListeners();
+        Utils.setupInventory();
 
     }
 
@@ -119,6 +120,8 @@ public class Main extends JavaPlugin {
         getCommand("pay").setExecutor(new CommandPay());
         getCommand("mutehistory").setExecutor(new CommandMuteHistory());
         getCommand("banhistory").setExecutor(new CommandBanHistory());
+        getCommand("broadcast").setExecutor(new CommandBroadcast());
+        getCommand("enchant").setExecutor(new CommandEnchant());
 
         getCommand("skype").setExecutor(new CommandSimple());
         getCommand("teamspeak").setExecutor(new CommandSimple());

@@ -1,6 +1,8 @@
 package de.hardcorepvp.commands;
 
 import de.hardcorepvp.utils.Messages;
+import de.hardcorepvp.utils.Utils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
@@ -9,6 +11,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 public class CommandSpawner implements CommandExecutor {
 
@@ -26,8 +29,9 @@ public class CommandSpawner implements CommandExecutor {
                 player.sendMessage(Messages.formatMessage("Du musst einen Spawner anschauen!"));
                 return true;
             }
-            CreatureSpawner cs = (CreatureSpawner) block.getState();
-            player.sendMessage(cs.getCreatureTypeName());
+			CreatureSpawner spawner = (CreatureSpawner) block.getState();
+            Utils.spawnerToChange.put(player, spawner);
+            player.openInventory(Utils.spawnerInv);
             return true;
         }
         if (args.length == 1) {
@@ -38,7 +42,6 @@ public class CommandSpawner implements CommandExecutor {
                 return true;
             }
             CreatureSpawner spawner = (CreatureSpawner) block.getState();
-            player.sendMessage(spawner.getCreatureTypeName());
             if (args[0].equalsIgnoreCase("creeper")) {
                 spawner.setSpawnedType(EntityType.CREEPER);
                 spawner.update();
@@ -64,5 +67,7 @@ public class CommandSpawner implements CommandExecutor {
         player.sendMessage(Messages.formatMessage(Messages.TOO_MANY_ARGUMENTS));
         return true;
     }
+
+
 
 }
