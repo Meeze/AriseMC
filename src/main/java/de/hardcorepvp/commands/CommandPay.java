@@ -1,7 +1,7 @@
 package de.hardcorepvp.commands;
 
 import de.hardcorepvp.Main;
-import de.hardcorepvp.data.User;
+import de.hardcorepvp.data.UserCurrency;
 import de.hardcorepvp.manager.UUIDManager;
 import de.hardcorepvp.model.Callback;
 import de.hardcorepvp.utils.Messages;
@@ -49,26 +49,38 @@ public class CommandPay implements CommandExecutor {
     }
 
     private void transferMoney(Player executor, UUID targetUniqueId, String targetName, long amount) {
-        User user = Bukkit.getOfflinePlayer(targetUniqueId).isOnline() ? Main.getUserManager().getUser(targetUniqueId) : new User(targetUniqueId);
-        user.addReadyExecutor(() -> {
-            if (user == null) {
-                executor.sendMessage(Messages.ERROR_OCCURRED);
-                return;
+        Main.getCurrencyManager().getUserCurrency(targetUniqueId, new Callback<UserCurrency>() {
+            @Override
+            public void onResult(UserCurrency currency) {
+                if (amount > 100) {
+                    executor.sendMessage("Mindestens 100!");
+                    return;
+                }
+                if (targetUniqueId == executor.getUniqueId()) {
+                    executor.sendMessage("Nicht zu dir selbst");
+                    return;
+                }
+                Main.getCurrencyManager().getUserCurrency(executor.getUniqueId(), new Callback<UserCurrency>() {
+                    @Override
+                    public void onResult(UserCurrency currencyTarget) {
+                        currency.setMoney(currency.getMoney() + amount);
+                        currencyTarget.setMoney(currencyTarget.getMoney() - amount);
+                        executor.sendMessage("Du hast " + targetName + " " + amount + " gesendet!");
+                        if (Bukkit.getPlayer(targetName) != null) {
+                            Bukkit.getPlayer(targetName).sendMessage("Du hast von " + executor.getName() + " " + amount + " erhalten!");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable cause) {
+
+                    }
+                });
             }
-            if (amount > 100) {
-                executor.sendMessage("Mindestens 100€!");
-                return;
-            }
-            if (targetUniqueId == executor.getUniqueId()) {
-                executor.sendMessage("Nicht zu dir selbst");
-                return;
-            }
-            User user1 = Main.getUserManager().getUser(executor.getUniqueId());
-            user1.removeMoney(amount);
-            user.addMoney(amount);
-            executor.sendMessage("Du hast " + targetName + " " + amount + " gesendet!");
-            if (Bukkit.getPlayer(targetName) != null) {
-                Bukkit.getPlayer(targetName).sendMessage("Du hast von " + executor.getName() + " " + amount + " erhalten!");
+
+            @Override
+            public void onFailure(Throwable cause) {
+                System.out.println("error");
             }
         });
     }

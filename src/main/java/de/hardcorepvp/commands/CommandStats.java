@@ -1,7 +1,7 @@
 package de.hardcorepvp.commands;
 
 import de.hardcorepvp.Main;
-import de.hardcorepvp.data.User;
+import de.hardcorepvp.data.UserStats;
 import de.hardcorepvp.manager.UUIDManager;
 import de.hardcorepvp.model.Callback;
 import de.hardcorepvp.utils.Messages;
@@ -51,17 +51,19 @@ public class CommandStats implements CommandExecutor {
 	}
 
 	private void sendStats(Player executor, UUID targetUniqueId, String targetName) {
-		User user = Bukkit.getOfflinePlayer(targetUniqueId).isOnline() ? Main.getUserManager().getUser(targetUniqueId) : new User(targetUniqueId);
-		if (user == null) {
-			executor.sendMessage(Messages.formatMessage(Messages.ERROR_OCCURRED));
-			return;
-		}
-		user.addReadyExecutor(() -> {
-			executor.sendMessage("Stats von " + targetName);
-			executor.sendMessage("Kills " + user.getKills());
-			executor.sendMessage("Deaths " + user.getDeaths());
-			executor.sendMessage("K/D " + user.getKD());
-			executor.sendMessage("Rank " + Main.getRankingManager().getUserRank(targetUniqueId));
+		Main.getStatsManager().getUserStats(targetUniqueId, new Callback<UserStats>() {
+			@Override
+			public void onResult(UserStats stats) {
+				executor.sendMessage("Stats von " + targetName);
+				executor.sendMessage("Kills " + stats.getKills());
+				executor.sendMessage("Deaths " + stats.getDeaths());
+				executor.sendMessage("K/D " + stats.getKD());
+			}
+
+			@Override
+			public void onFailure(Throwable cause) {
+
+			}
 		});
 	}
 }

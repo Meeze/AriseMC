@@ -6,13 +6,9 @@ import de.hardcorepvp.file.ConfigFile;
 import de.hardcorepvp.file.PermissionsFile;
 import de.hardcorepvp.listener.*;
 import de.hardcorepvp.manager.*;
-import de.hardcorepvp.utils.Utils;
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
 
 public class Main extends JavaPlugin {
 
@@ -21,7 +17,10 @@ public class Main extends JavaPlugin {
     private static PermissionsFile permissionsFile;
     private static DatabaseManager databaseManager;
     private static Manager manager;
-    private static UserManager userManager;
+    private static StatsManager statsManager;
+    private static CurrencyManager currencyManager;
+    private static DataManager dataManager;
+    private static HomeManager homeManager;
     private static RankingManager rankingManager;
     private static PunishmentManager punishmentManager;
     private static PermissionManager permissionManager;
@@ -29,7 +28,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Utils.registerCustomEnchantments();
+        //Utils.registerCustomEnchantments();
         //TODO SAVE WORLDS IN CONFIG AND LOAD THEM PROPERLY
         instance = this;
         configFile = new ConfigFile();
@@ -51,7 +50,10 @@ public class Main extends JavaPlugin {
         }
 
         manager = new Manager();
-        userManager = new UserManager();
+        statsManager = new StatsManager();
+        currencyManager = new CurrencyManager();
+        dataManager = new DataManager();
+        homeManager = new HomeManager();
         rankingManager = new RankingManager();
         punishmentManager = new PunishmentManager();
         permissionManager = new PermissionManager();
@@ -162,8 +164,20 @@ public class Main extends JavaPlugin {
         return manager;
     }
 
-    public static UserManager getUserManager() {
-        return userManager;
+    public static StatsManager getStatsManager() {
+        return statsManager;
+    }
+
+    public static CurrencyManager getCurrencyManager() {
+        return currencyManager;
+    }
+
+    public static DataManager getDataManager() {
+        return dataManager;
+    }
+
+    public static HomeManager getHomeManager() {
+        return homeManager;
     }
 
     public static RankingManager getRankingManager() {

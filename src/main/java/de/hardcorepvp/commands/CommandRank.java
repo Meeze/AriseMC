@@ -1,13 +1,11 @@
 package de.hardcorepvp.commands;
 
 import de.hardcorepvp.Main;
-import de.hardcorepvp.data.User;
 import de.hardcorepvp.manager.UUIDManager;
 import de.hardcorepvp.model.Callback;
 import de.hardcorepvp.permissions.PermissionGroup;
 import de.hardcorepvp.utils.Messages;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -78,23 +76,23 @@ public class CommandRank implements CommandExecutor {
     }
 
     private void sendRank(Player executor, UUID targetUniqueId, String targetName) {
-        User user = Bukkit.getOfflinePlayer(targetUniqueId).isOnline() ? Main.getUserManager().getUser(targetUniqueId) : new User(targetUniqueId);
-        if (user == null) {
-            executor.sendMessage(Messages.formatMessage(Messages.ERROR_OCCURRED));
-            return;
-        }
-        user.addReadyExecutor(() -> executor.sendMessage("Rang von " + targetName + ": " + ChatColor.translateAlternateColorCodes('&', user.getGroup().getPrefix())));
+//        User user = Bukkit.getOfflinePlayer(targetUniqueId).isOnline() ? Main.getUserManager().getUser(targetUniqueId) : new User(targetUniqueId);
+//        if (user == null) {
+//            executor.sendMessage(Messages.formatMessage(Messages.ERROR_OCCURRED));
+//            return;
+//        }
+//        user.addReadyExecutor(() -> executor.sendMessage("Rang von " + targetName + ": " + ChatColor.translateAlternateColorCodes('&', user.getGroup().getPrefix())));
     }
 
     private void setRank(Player executor, UUID targetUniqueId, String targetName, PermissionGroup group) {
-        User user = Bukkit.getOfflinePlayer(targetUniqueId).isOnline() ? Main.getUserManager().getUser(targetUniqueId) : new User(targetUniqueId);
-        if (user == null) {
-            executor.sendMessage(Messages.formatMessage(Messages.ERROR_OCCURRED));
-            return;
-        }
-        user.addReadyExecutor(() -> {
-            user.setGroup(group);
-            executor.sendMessage("Der Spieler " + targetName + " ist nun in der Gruppe '" + ChatColor.translateAlternateColorCodes('&', group.getPrefix()) + "'");
-        });
+//        User user = Bukkit.getOfflinePlayer(targetUniqueId).isOnline() ? Main.getUserManager().getUser(targetUniqueId) : new User(targetUniqueId);
+//        if (user == null) {
+//            executor.sendMessage(Messages.formatMessage(Messages.ERROR_OCCURRED));
+//            return;
+//        }
+//        user.addReadyExecutor(() -> {
+//            user.setGroup(group);
+//            executor.sendMessage("Der Spieler " + targetName + " ist nun in der Gruppe '" + ChatColor.translateAlternateColorCodes('&', group.getPrefix()) + "'");
+//        });
     }
 }

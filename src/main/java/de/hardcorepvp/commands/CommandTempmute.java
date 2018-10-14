@@ -1,7 +1,6 @@
 package de.hardcorepvp.commands;
 
 import de.hardcorepvp.Main;
-import de.hardcorepvp.data.User;
 import de.hardcorepvp.manager.PunishmentManager;
 import de.hardcorepvp.manager.UUIDManager;
 import de.hardcorepvp.model.Callback;
@@ -71,21 +70,21 @@ public class CommandTempmute implements CommandExecutor {
                             player.sendMessage("§cDer Spieler konnte nicht gemuted werden!");
                             return;
                         }
-                        User user = Main.getUserManager().getUser(target.getUniqueId());
-                        user.setMuteData(muteData);
-                        target.sendMessage("§b█▀▀▀▀▀▀▀▀▀▀ §6§lMute§r §b▀▀▀▀▀▀▀▀▀▀█");
-                        target.sendMessage("§b▌");
-                        target.sendMessage("§b▌ §7Du wurdest §ctemporär §7gemuted.");
-                        target.sendMessage("§b▌ ");
-                        target.sendMessage("§b▌ §6Von: §e" + muteData.getMutedBy());
-                        target.sendMessage("§b▌ §6Grund: §e" + muteData.getMuteReason());
-                        target.sendMessage("§b▌ §6Zeitpunkt: §e" + Utils.formatDate(muteData.getMuteTimestamp()));
-                        target.sendMessage("§b▌ §6Dein Mute läuft bis: §e" + Utils.formatDate(muteTime));
-                        target.sendMessage("§b▌ ");
-                        target.sendMessage("§b▌ §7Falls dies ein Fehlmute war, klicke §6*hier*");
-                        target.sendMessage("§b█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█");
-                        Bukkit.broadcastMessage(Messages.formatMessage(Messages.PREFIX + "§9Der Spieler §7" + args[0] + " §9wurde von §e" + muteData.getMutedBy() + " §9temporär gemuted."));
-                        Bukkit.broadcastMessage(Messages.formatMessage(Messages.PREFIX + "§9Grund: §b" + muteData.getMuteReason()));
+//                        User user = Main.getUserManager().getUser(target.getUniqueId());
+//                        user.setMuteData(muteData);
+//                        target.sendMessage("§b█▀▀▀▀▀▀▀▀▀▀ §6§lMute§r §b▀▀▀▀▀▀▀▀▀▀█");
+//                        target.sendMessage("§b▌");
+//                        target.sendMessage("§b▌ §7Du wurdest §ctemporär §7gemuted.");
+//                        target.sendMessage("§b▌ ");
+//                        target.sendMessage("§b▌ §6Von: §e" + muteData.getMutedBy());
+//                        target.sendMessage("§b▌ §6Grund: §e" + muteData.getMuteReason());
+//                        target.sendMessage("§b▌ §6Zeitpunkt: §e" + Utils.formatDate(muteData.getMuteTimestamp()));
+//                        target.sendMessage("§b▌ §6Dein Mute läuft bis: §e" + Utils.formatDate(muteTime));
+//                        target.sendMessage("§b▌ ");
+//                        target.sendMessage("§b▌ §7Falls dies ein Fehlmute war, klicke §6*hier*");
+//                        target.sendMessage("§b█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█");
+//                        Bukkit.broadcastMessage(Messages.formatMessage(Messages.PREFIX + "§9Der Spieler §7" + args[0] + " §9wurde von §e" + muteData.getMutedBy() + " §9temporär gemuted."));
+//                        Bukkit.broadcastMessage(Messages.formatMessage(Messages.PREFIX + "§9Grund: §b" + muteData.getMuteReason()));
                     }
 
                     @Override

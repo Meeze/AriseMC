@@ -1,7 +1,6 @@
 package de.hardcorepvp.commands;
 
 import de.hardcorepvp.Main;
-import de.hardcorepvp.data.User;
 import de.hardcorepvp.manager.PunishmentManager;
 import de.hardcorepvp.manager.UUIDManager;
 import de.hardcorepvp.model.Callback;
@@ -15,6 +14,7 @@ import org.bukkit.entity.Player;
 
 public class CommandMute implements CommandExecutor {
 
+    //TODO Optional<MuteData> check!
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
@@ -58,8 +58,8 @@ public class CommandMute implements CommandExecutor {
                             player.sendMessage("§cDer Spieler konnte nicht gemuted werden!");
                             return;
                         }
-                        User user = Main.getUserManager().getUser(target.getUniqueId());
-                        user.setMuteData(muteData);
+//                        User user = Main.getUserManager().getUser(target.getUniqueId());
+//                        user.setMuteData(muteData);
                         target.sendMessage("§b█▀▀▀▀▀▀▀▀▀▀ §6§lMute§r §b▀▀▀▀▀▀▀▀▀▀█");
                         target.sendMessage("§b▌");
                         target.sendMessage("§b▌ §7Du wurdest §4permanent §7gemuted.");

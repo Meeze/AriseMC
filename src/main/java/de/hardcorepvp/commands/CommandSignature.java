@@ -1,9 +1,6 @@
 package de.hardcorepvp.commands;
 
-import de.hardcorepvp.Main;
 import de.hardcorepvp.utils.Messages;
-import net.minecraft.util.org.apache.commons.lang3.StringUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -31,8 +28,8 @@ public class CommandSignature implements CommandExecutor {
             }
             Sign sign = (Sign) block.getState();
             sign.setLine(0, "-*-*-*-*-*-*-*-");
-            sign.setLine(1, ChatColor.translateAlternateColorCodes('&', Main.getUserManager().getUser(player.getUniqueId()).getGroup().getPrefix()));
-            sign.setLine(2, ChatColor.translateAlternateColorCodes('&', StringUtils.substring(Main.getUserManager().getUser(player.getUniqueId()).getGroup().getPrefix(), 3, 5) + " " + player.getName()));
+//            sign.setLine(1, ChatColor.translateAlternateColorCodes('&', Main.getUserManager().getUser(player.getUniqueId()).getGroup().getPrefix()));
+//            sign.setLine(2, ChatColor.translateAlternateColorCodes('&', StringUtils.substring(Main.getUserManager().getUser(player.getUniqueId()).getGroup().getPrefix(), 3, 5) + " " + player.getName()));
             sign.setLine(3, "-*-*-*-*-*-*-*-");
             sign.update();
             return true;

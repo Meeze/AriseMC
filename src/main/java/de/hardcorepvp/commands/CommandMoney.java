@@ -1,7 +1,7 @@
 package de.hardcorepvp.commands;
 
 import de.hardcorepvp.Main;
-import de.hardcorepvp.data.User;
+import de.hardcorepvp.data.UserCurrency;
 import de.hardcorepvp.manager.UUIDManager;
 import de.hardcorepvp.model.Callback;
 import de.hardcorepvp.utils.Messages;
@@ -53,13 +53,16 @@ public class CommandMoney implements CommandExecutor {
     }
 
     private void sendMoney(Player executor, UUID targetUniqueId, String targetName) {
-        User user = Bukkit.getOfflinePlayer(targetUniqueId).isOnline() ? Main.getUserManager().getUser(targetUniqueId) : new User(targetUniqueId);
-        user.addReadyExecutor(() -> {
-            if (user == null) {
-                executor.sendMessage(Messages.formatMessage(Messages.ERROR_OCCURRED));
-                return;
+        Main.getCurrencyManager().getUserCurrency(targetUniqueId, new Callback<UserCurrency>() {
+            @Override
+            public void onResult(UserCurrency currency) {
+                executor.sendMessage("Money von " + targetName + ": " + currency.getMoney());
             }
-            executor.sendMessage("Money von " + targetName + ": " + user.getMoney());
+
+            @Override
+            public void onFailure(Throwable cause) {
+
+            }
         });
     }
 }

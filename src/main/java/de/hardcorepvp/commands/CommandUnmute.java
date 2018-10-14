@@ -1,7 +1,6 @@
 package de.hardcorepvp.commands;
 
 import de.hardcorepvp.Main;
-import de.hardcorepvp.data.User;
 import de.hardcorepvp.manager.PunishmentManager;
 import de.hardcorepvp.manager.UUIDManager;
 import de.hardcorepvp.model.Callback;
@@ -35,20 +34,31 @@ public class CommandUnmute implements CommandExecutor {
             }
             Player target = Bukkit.getPlayer(args[0]);
             if (target != null) {
-                User user = Main.getUserManager().getUser(target.getUniqueId());
-                if (user.getMuteData() == null) {
-                    player.sendMessage("§cDer Spieler ist nicht gemuted.");
-                    return true;
-                }
-                Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> Main.getPunishmentManager().unmute(target.getUniqueId()));
-                user.setMuteData(null);
-                for (Player all : Bukkit.getOnlinePlayers()) {
-                    if (all.hasPermission("system.unmute") && !all.equals(player)) {
-                        all.sendMessage(Messages.formatMessage(Messages.PREFIX + "§6" + player.getName() + " §chat den Spieler §e" + args[0] + " §centmuted."));
-                    }
-                }
-                player.sendMessage("§cDer Spieler wurde entmuted.");
-                target.sendMessage("§eDu wurdest entmuted.");
+//                Main.getUserManager().getUser(target.getUniqueId(), new Callback<User>() {
+//                    @Override
+//                    public void onResult(User user) {
+//                        if (!user.getMuteData().isPresent()) {
+//                            player.sendMessage("§cDer Spieler ist nicht gemuted.");
+//                            return;
+//                        }
+//                        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> Main.getPunishmentManager().unmute(target.getUniqueId()));
+//                        PunishmentManager.MuteData muteData = null;
+//                        user.setMuteData(Optional.of(muteData));
+//                        for (Player all : Bukkit.getOnlinePlayers()) {
+//                            if (all.hasPermission("system.unmute") && !all.equals(player)) {
+//                                all.sendMessage(Messages.formatMessage(Messages.PREFIX + "§6" + player.getName() + " §chat den Spieler §e" + args[0] + " §centmuted."));
+//                            }
+//                        }
+//                        player.sendMessage("§cDer Spieler wurde entmuted.");
+//                        target.sendMessage("§eDu wurdest entmuted.");
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Throwable cause) {
+//                        player.sendMessage("error");
+//                    }
+//                });
+
                 return true;
             }
             UUIDManager.getProfileHolderAt(args[0], System.currentTimeMillis(), new Callback<UUIDManager.ProfileHolder>() {
